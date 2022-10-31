@@ -1,11 +1,12 @@
 // TODO: Her er det bugs
+// Typet om forventet parameter letter i handleGuess fra number til letter
 
 const letterList = Array.from('ABCDEFGHIJKLMNOPQRSTUVWXYZÆØÅ')
 
 type LettersProps = {
   getMessage: () => string
   guesses: string[]
-  handleGuess: (letter: number) => void
+  handleGuess: (letter: string) => void
 }
 
 type LetterProps = Pick<LettersProps, 'handleGuess' | 'guesses'> & {

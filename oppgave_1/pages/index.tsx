@@ -1,4 +1,6 @@
 // TODO: Her er det bugs
+// Endret result i UseEffect til å gjøre om til json og setCountry() etterpå
+// La til isMatch som prop på Words
 
 import type { NextPage } from 'next'
 import { useEffect, useRef } from 'react'
@@ -32,7 +34,8 @@ const Home: NextPage = () => {
           },
         })
 
-        const result = { data: [] }
+        const result = await response.json()
+        setCountry(result.data)
       } catch (error) {
         console.log(error)
       }
@@ -45,7 +48,7 @@ const Home: NextPage = () => {
       <h1>Gjett flagget</h1>
       <p className="flag">{country?.unicodeFlag}</p>
       <Strikes strikes={strikes} />
-      <Words words={wordSplit()} />
+      <Words isMatch={isMatch} words={wordSplit()} />
       <Letters
         handleGuess={handleGuess}
         guesses={guesses}
