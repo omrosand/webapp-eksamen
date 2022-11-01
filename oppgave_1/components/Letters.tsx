@@ -1,5 +1,6 @@
 // TODO: Her er det bugs
 // Typet om forventet parameter letter i handleGuess fra number til letter
+// endret foreach til map 
 
 const letterList = Array.from('ABCDEFGHIJKLMNOPQRSTUVWXYZÆØÅ')
 
@@ -22,7 +23,7 @@ export default function Letters({
     <>
       <p className="message">{getMessage()}</p>
       <ul className="letters">
-        {letterList.forEach((letter) => (
+        {letterList.map((letter) => (
           <Letter
             handleGuess={handleGuess}
             guesses={guesses}
