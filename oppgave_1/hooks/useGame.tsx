@@ -1,4 +1,6 @@
 // TODO: Her er det bugs
+// la til sjekk om spillet er over i handleGuess så man ikke kan fortsette å gjette etter vinn/tap
+// la til setStrikes(strikeCopy) i handleGuess
 
 import { useState } from 'react'
 import { Strike } from '../components/Strikes'
@@ -50,9 +52,11 @@ export const useGame = () => {
   }
 
   const handleGuess = (letter: string) => {
+    if ((isSolved(country, guesses) && !isGameOver) || isGameOver) return
     if (!country?.name?.toLowerCase().includes(letter.toLowerCase())) {
       const strikeCopy = [...strikes]
       strikeCopy.pop()
+      setStrikes(strikeCopy)
     }
     setGuesses((prev: string[]) => [...prev, letter.toLowerCase()])
   }
