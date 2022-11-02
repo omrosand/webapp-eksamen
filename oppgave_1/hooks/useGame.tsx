@@ -1,6 +1,8 @@
 // TODO: Her er det bugs
 // la til sjekk om spillet er over i handleGuess så man ikke kan fortsette å gjette etter vinn/tap
 // la til setStrikes(strikeCopy) i handleGuess
+// isGameOver sjekker nå om alle guesses er wrong
+// handleGuess setter inn riktig ikon for hver strike
 
 import { useState } from 'react'
 import { Strike } from '../components/Strikes'
@@ -30,7 +32,9 @@ export const useGame = () => {
     )
   }
 
-  const isGameOver = strikes.every((strike: any) => strike.guess) ? true : false
+  const isGameOver = strikes.every((strike: any) => strike.guess == 'wrong')
+    ? true
+    : false
 
   const getMessage = () => {
     if (isSolved(country, guesses) && !isGameOver) return 'Du klarte det'
@@ -55,7 +59,8 @@ export const useGame = () => {
     if ((isSolved(country, guesses) && !isGameOver) || isGameOver) return
     if (!country?.name?.toLowerCase().includes(letter.toLowerCase())) {
       const strikeCopy = [...strikes]
-      strikeCopy.pop()
+      strikeCopy.shift()
+      strikeCopy.push({ icon: '🚫', guess: 'wrong' })
       setStrikes(strikeCopy)
     }
     setGuesses((prev: string[]) => [...prev, letter.toLowerCase()])
