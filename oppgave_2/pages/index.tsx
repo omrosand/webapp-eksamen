@@ -1,5 +1,6 @@
 import type { NextPage } from 'next'
 import { useEffect } from 'react'
+import Students from '../components/Students'
 
 const Home: NextPage = () => {
   useEffect(() => {
@@ -15,6 +16,7 @@ const Home: NextPage = () => {
   return (
     <main>
       <h1>Student gruppering</h1>
+      <Students />
     </main>
   )
 }
