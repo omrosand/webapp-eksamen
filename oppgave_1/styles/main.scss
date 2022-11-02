@@ -1,6 +1,7 @@
 // TODO: Her er det bugs
 // endret fargen til å bli gul
 // endret display til grid i .letters
+// endret gap til 1.45rem
 
 @import './globals.scss';
 
@@ -54,7 +55,7 @@ main {
 
 .letters {
   display: grid;
-  gap: 1rem;
+  gap: 1.45rem;
   grid-template-columns: repeat(auto-fill, 50px);
 
   .letter {
