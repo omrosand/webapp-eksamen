@@ -1,4 +1,7 @@
 // TODO: Her er det bugs
+// endret fargen til å bli gul
+// endret display til grid i .letters
+// endret gap til 1.45rem
 
 @import './globals.scss';
 
@@ -51,8 +54,8 @@ main {
 }
 
 .letters {
-  display: block;
-  gap: 1rem;
+  display: grid;
+  gap: 1.45rem;
   grid-template-columns: repeat(auto-fill, 50px);
 
   .letter {
@@ -61,7 +64,7 @@ main {
     padding: 2rem;
     box-shadow: 4px 4px 0 0 #c1c1c1;
     &.highlight {
-      background-color: #fd2238;
+      background-color: #fdd522;
     }
   }
 }
