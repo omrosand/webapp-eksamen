@@ -6,3 +6,11 @@ datasource db {
   provider = "sqlite"
   url      = "file:./dev.db"
 }
+
+model Student {
+  id          String     @id @default(cuid())
+  title       String    
+  gender      String
+  age         Int
+  group       String
+}
