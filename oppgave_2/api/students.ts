@@ -10,3 +10,9 @@ export const getStudents = (options: any) => {
   })
 }
 
+export const getStudent = (id: string, options: any) => {
+  return fetcher(`${STUDENTS_URL}/${id}`, {
+    method: 'GET',
+    ...options,
+  })
+}
