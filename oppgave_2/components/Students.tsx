@@ -1,7 +1,40 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { getStudents } from '../api/students'
 
 export default function Students() {
-  const [option, setOption] = useState()
+  const [option, setOption] = useState('ingen')
+  const [data, setData] = useState({})
+  const [status, setStatus] = useState('')
+  const [error, setError] = useState({})
+
+  const isLoading = status === 'loading'
+  const isError = status === 'error'
+  const isSuccess = status === 'success'
+
+  useEffect(() => {
+    const handler = async () => {
+      setStatus('loading')
+      try {
+        const result = await getStudents({})
+        setStatus('success')
+        setData(result)
+      } catch (error) {
+        setStatus('error')
+        setError(error as any)
+        setTimeout(() => {
+          setStatus('')
+        }, 2000)
+      }
+    }
+    handler()
+  }, [])
+
+  if (isLoading) {
+    return <h2>Laster innhold...</h2>
+  }
+  if (isError) {
+    return <h2>Noe gikk galt</h2>
+  }
 
   const handleOptionChange = (e: any) => {
     console.log(e.target.value)
@@ -47,6 +80,8 @@ export default function Students() {
         </section>
       </form>
       <h2>{option}</h2>
+      {JSON.stringify(data)}
+      <ul></ul>
     </>
   )
 }

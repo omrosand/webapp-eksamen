@@ -10,10 +10,14 @@ const studentFactory = (count: number) => {
         title: faker.name.firstName(),
         gender: faker.name.sexType(),
         age: faker.datatype.number({
-          'min': 18,
-          'max': 50
-      }),
-        group: faker.helpers.arrayElement(['informatikk', 'informasjonssystemer', 'digitale medier og design']),
+          min: 18,
+          max: 50,
+        }),
+        group: faker.helpers.arrayElement([
+          'informatikk',
+          'informasjonssystemer',
+          'digitale medier og design',
+        ]),
       }
     })
 }

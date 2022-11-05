@@ -1,12 +1,5 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
-
-type Student = {
-  id: string
-  name: string
-  gender: string
-  age: number
-  group: string
-}
+import { NextApiRequest, NextApiResponse } from 'next'
+import prisma from '../../lib/db'
 
 export default async function handler(
   req: NextApiRequest,
@@ -14,10 +7,20 @@ export default async function handler(
 ) {
   switch (req.method?.toLowerCase()) {
     case 'get':
-      return res.status(200).json({ success: true, data: [] })
+
+      const students = await prisma.student.findMany({
+        
+      })
+      return res.status(200).json({ status: true, data: students })
+    case 'post':
+      const data = req.body
+
+      const student = await prisma.student.create({ data })
+      return res.status(201).json({ status: true, data: student })
     default:
-      return res
-        .status(400)
-        .json({ success: false, error: 'Method not allowed' })
+      return res.status(405).json({
+        success: false,
+        error: 'Method not allowed',
+      })
   }
 }
