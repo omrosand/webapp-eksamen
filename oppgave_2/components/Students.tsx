@@ -3,7 +3,7 @@ import { getStudents } from '../api/students'
 
 export default function Students() {
   const [option, setOption] = useState('ingen')
-  const [data, setData] = useState({})
+  const [data, setData] = useState([])
   const [status, setStatus] = useState('')
   const [error, setError] = useState({})
 
@@ -17,7 +17,7 @@ export default function Students() {
       try {
         const result = await getStudents({})
         setStatus('success')
-        setData(result)
+        setData(result.data)
       } catch (error) {
         setStatus('error')
         setError(error as any)
@@ -79,9 +79,17 @@ export default function Students() {
           />
         </section>
       </form>
-      <h2>{option}</h2>
-      {JSON.stringify(data)}
-      <ul></ul>
+      <h2>Gruppering etter {option}:</h2>
+      <ul>
+        {data.map((student) => (
+          <li key={student.id}>
+            <span>{student.title}</span>
+            <span>{student.age}</span>
+            <span>{student.gender}</span>
+            <span>{student.group}</span>
+          </li>
+        ))}
+      </ul>
     </>
   )
 }
