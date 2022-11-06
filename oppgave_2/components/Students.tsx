@@ -3,7 +3,7 @@ import { getStudents } from '../api/students'
 
 export default function Students() {
   const [option, setOption] = useState('ingen')
-  const [data, setData] = useState([])
+  const [data, setData] = useState<any[]>([])
   const [status, setStatus] = useState('')
   const [error, setError] = useState({})
 
@@ -34,6 +34,19 @@ export default function Students() {
   }
   if (isError) {
     return <h2>Noe gikk galt</h2>
+  }
+
+  // Hvis option er 'ingen' - sorter alfabetisk på navn
+  if (option === 'ingen') {
+    data.sort(function (a, b) {
+      if (a.title < b.title) {
+        return -1
+      }
+      if (a.title > b.title) {
+        return 1
+      }
+      return 0
+    })
   }
 
   const handleOptionChange = (e: any) => {
@@ -83,6 +96,7 @@ export default function Students() {
       <ul>
         {data.map((student) => (
           <li key={student.id}>
+            <span>{student.id}</span>
             <span>{student.title}</span>
             <span>{student.age}</span>
             <span>{student.gender}</span>
