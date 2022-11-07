@@ -54,40 +54,16 @@ export default function Students() {
     setOption(e.target.value)
   }
 
-  const ageFilter = () => {
-    const result = data.reduce(function (r, a) {
-      r[a.age] = r[a.age] || []
-      r[a.age].push(a)
-      return r
-    }, Object.create(null))
-    console.log(result)
-  }
-  const genderFilter = () => {
-    const result = data.reduce(function (r, a) {
-      r[a.gender] = r[a.gender] || []
-      r[a.gender].push(a)
-      return r
-    }, Object.create(null))
-    console.log(result)
-  }
-  const groupFilter = () => {
-    const result = data.reduce(function (r, a) {
-      r[a.group] = r[a.group] || []
-      r[a.group].push(a)
-      return r
-    }, Object.create(null))
-    console.log(result)
-  }
   if (option === 'alder') {
-    ageFilter()
+    data.reduce(groupByProperty("age"), Object.create(null))
   }
   if (option === 'kjonn') {
-    genderFilter()
+    data.reduce(groupByProperty("gender"), Object.create(null))
   }
   if (option === 'klasse') {
-    groupFilter()
+    data.reduce(groupByProperty("group"), Object.create(null))
   }
-
+  
   return (
     <>
       <form>
@@ -140,4 +116,11 @@ export default function Students() {
       </ul>
     </>
   )
+}
+function groupByProperty(property: string) {
+  return function (result: { [x: string]: any[] }, entry: { [x: string]: string | number }) {
+    result[entry[property]] = result[entry[property]] || [];
+    result[entry[property]].push(entry);
+    return result;
+  };
 }
