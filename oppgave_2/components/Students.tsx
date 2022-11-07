@@ -54,6 +54,40 @@ export default function Students() {
     setOption(e.target.value)
   }
 
+  const ageFilter = () => {
+    const result = data.reduce(function (r, a) {
+      r[a.age] = r[a.age] || []
+      r[a.age].push(a)
+      return r
+    }, Object.create(null))
+    console.log(result)
+  }
+  const genderFilter = () => {
+    const result = data.reduce(function (r, a) {
+      r[a.gender] = r[a.gender] || []
+      r[a.gender].push(a)
+      return r
+    }, Object.create(null))
+    console.log(result)
+  }
+  const groupFilter = () => {
+    const result = data.reduce(function (r, a) {
+      r[a.group] = r[a.group] || []
+      r[a.group].push(a)
+      return r
+    }, Object.create(null))
+    console.log(result)
+  }
+  if (option === 'alder') {
+    ageFilter()
+  }
+  if (option === 'kjonn') {
+    genderFilter()
+  }
+  if (option === 'klasse') {
+    groupFilter()
+  }
+
   return (
     <>
       <form>
