@@ -53,7 +53,7 @@ export default function Students() {
     console.log(e.target.value)
     setOption(e.target.value)
   }
-
+  // Inspirasjon: https://stackoverflow.com/questions/40774697/how-can-i-group-an-array-of-objects-by-key/40774759#40774759
   const ageFilter = () => {
     const result = data.reduce(function (r, a) {
       r[a.age] = r[a.age] || []
