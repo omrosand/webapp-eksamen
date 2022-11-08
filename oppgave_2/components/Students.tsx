@@ -129,7 +129,7 @@ export default function Students() {
                 <span>{student.group}</span>
               </li>
             ))}{' '}
-            <p>Antall: {value.length}</p>
+            <p className="count">Antall: {value.length}</p>
           </ul>
         </>
       ))}
