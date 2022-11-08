@@ -8,9 +8,7 @@ export default async function handler(
   switch (req.method?.toLowerCase()) {
     case 'get':
 
-      const students = await prisma.student.findMany({
-        
-      })
+      const students = await prisma.student.findMany({})
       return res.status(200).json({ status: true, data: students })
     case 'post':
       const data = req.body

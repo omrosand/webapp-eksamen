@@ -1,9 +1,17 @@
 import { useEffect, useState } from 'react'
 import { getStudents } from '../api/students'
 
+type Student = {
+  id: string
+  title: string
+  gender: string
+  age: number
+  group: string
+}
+
 export default function Students() {
   const [option, setOption] = useState('ingen')
-  const [data, setData] = useState<any[]>([])
+  const [data, setData] = useState<Student[]>([])
   const [status, setStatus] = useState('')
   const [error, setError] = useState({})
 
@@ -53,6 +61,7 @@ export default function Students() {
     console.log(e.target.value)
     setOption(e.target.value)
   }
+  let groupedData: { [x: string]: Student[] } = {}
   // Inspirasjon: https://stackoverflow.com/questions/40774697/how-can-i-group-an-array-of-objects-by-key/40774759#40774759
   const ageFilter = () => {
     const result = data.reduce(function (r, a) {
@@ -79,13 +88,13 @@ export default function Students() {
     console.log(result)
   }
   if (option === 'alder') {
-    ageFilter()
+    groupedData = data.reduce(groupByProperty('age'), Object.create(null))
   }
   if (option === 'kjonn') {
-    genderFilter()
+    groupedData = data.reduce(groupByProperty('gender'), Object.create(null))
   }
   if (option === 'klasse') {
-    groupFilter()
+    groupedData = data.reduce(groupByProperty('group'), Object.create(null))
   }
 
   return (
@@ -126,18 +135,32 @@ export default function Students() {
           />
         </section>
       </form>
-      <h2>Gruppering etter {option}:</h2>
-      <ul>
-        {data.map((student) => (
-          <li key={student.id}>
-            <span>{student.id}</span>
-            <span>{student.title}</span>
-            <span>{student.age}</span>
-            <span>{student.gender}</span>
-            <span>{student.group}</span>
-          </li>
-        ))}
-      </ul>
+      {Object.entries(groupedData).forEach(
+        ([key, value]: [string, Student[]]) => (
+          <>
+            <h2>Gruppering etter {key}:</h2>
+            <ul>
+              {value.map((student: Student) => (
+                <li key={student.id}>
+                  <span>{student.id}</span>
+                  <span>{student.title}</span>
+                  <span>{student.age}</span>
+                  <span>{student.gender}</span>
+                  <span>{student.group}</span>
+                </li>
+              ))}
+            </ul>
+          </>
+        )
+      )}
     </>
   )
+}
+function groupByProperty(property: keyof Student) {
+  return function (result: { [key: string]: Student[] }, entry: Student) {
+    let studentPropertyValue = entry[property] && entry[property].toString()
+    result[studentPropertyValue] = result[studentPropertyValue] || []
+    result[studentPropertyValue].push(entry)
+    return result
+  }
 }
