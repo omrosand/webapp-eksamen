@@ -62,39 +62,18 @@ export default function Students() {
     setOption(e.target.value)
   }
   let groupedData: { [x: string]: Student[] } = {}
-  // Inspirasjon: https://stackoverflow.com/questions/40774697/how-can-i-group-an-array-of-objects-by-key/40774759#40774759
-  const ageFilter = () => {
-    const result = data.reduce(function (r, a) {
-      r[a.age] = r[a.age] || []
-      r[a.age].push(a)
-      return r
-    }, Object.create(null))
-    console.log(result)
-  }
-  const genderFilter = () => {
-    const result = data.reduce(function (r, a) {
-      r[a.gender] = r[a.gender] || []
-      r[a.gender].push(a)
-      return r
-    }, Object.create(null))
-    console.log(result)
-  }
-  const groupFilter = () => {
-    const result = data.reduce(function (r, a) {
-      r[a.group] = r[a.group] || []
-      r[a.group].push(a)
-      return r
-    }, Object.create(null))
-    console.log(result)
-  }
+
   if (option === 'alder') {
     groupedData = data.reduce(groupByProperty('age'), Object.create(null))
+    console.log(groupedData)
   }
   if (option === 'kjonn') {
     groupedData = data.reduce(groupByProperty('gender'), Object.create(null))
+    console.log(groupedData)
   }
   if (option === 'klasse') {
     groupedData = data.reduce(groupByProperty('group'), Object.create(null))
+    console.log(groupedData)
   }
 
   return (
@@ -155,12 +134,12 @@ export default function Students() {
       )}
     </>
   )
-}
-function groupByProperty(property: keyof Student) {
-  return function (result: { [key: string]: Student[] }, entry: Student) {
-    let studentPropertyValue = entry[property] && entry[property].toString()
-    result[studentPropertyValue] = result[studentPropertyValue] || []
-    result[studentPropertyValue].push(entry)
-    return result
+  function groupByProperty(property: keyof Student) {
+    return function (result: { [key: string]: Student[] }, entry: Student) {
+      let studentPropertyValue = entry[property] && entry[property].toString()
+      result[studentPropertyValue] = result[studentPropertyValue] || []
+      result[studentPropertyValue].push(entry)
+      return result
+    }
   }
 }
