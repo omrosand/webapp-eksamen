@@ -66,17 +66,18 @@ export default function Students() {
       'ingen': data
     }
   }
+
   if (option === 'alder') {
-    groupedData = (data.reduce(groupByProperty("age"), {}));
-    console.log(groupedData)
+    groupedData = data.reduce(groupByProperty('age'), Object.create(null))
+    // console.log(groupedData)
   }
   if (option === 'kjonn') {
-    groupedData = (data.reduce(groupByProperty("gender"), {}));
-    console.log(groupedData)
+    groupedData = data.reduce(groupByProperty('gender'), Object.create(null))
+    // console.log(groupedData)
   }
   if (option === 'klasse') {
-    groupedData = (data.reduce(groupByProperty("group"), {}));
-    console.log(groupedData)
+    groupedData = data.reduce(groupByProperty('group'), Object.create(null))
+    // console.log(groupedData)
   }
 
   return (
@@ -117,33 +118,33 @@ export default function Students() {
           />
         </section>
       </form>
-      {Object.entries(groupedData).map(
-        ([key, value]: [string, Student[]]) => (
-          <>
-            <h2>Gruppering etter {key}:</h2>
-            <ul>
-              {value.map((student: Student) => (
-                <li key={student.id}>
-                  <span>{student.id}</span>
-                  <span>{student.title}</span>
-                  <span>{student.age}</span>
-                  <span>{student.gender}</span>
-                  <span>{student.group}</span>
-                </li>
-              ))} <p>Antall: {value.length}</p>
-            </ul>
-          </>
-        )
-      )}
+      {Object.entries(groupedData).map(([key, value]: [string, Student[]]) => (
+        <>
+          <h2>
+            Gruppering etter {option}: {key}
+          </h2>
+          <ul>
+            {value.map((student: Student) => (
+              <li key={student.id}>
+                <span>{student.id}</span>
+                <span>{student.title}</span>
+                <span>{student.age}</span>
+                <span>{student.gender}</span>
+                <span>{student.group}</span>
+              </li>
+            ))}
+          </ul>
+          <p className="count">Antall: {value.length}</p>
+        </>
+      ))}
     </>
   )
-}
-
-function groupByProperty(property: keyof Student) {
-  return function (result: { [key: string]: Student[] }, entry: Student) {
-    let studentPropertyValue = entry[property] && entry[property].toString();
-    result[studentPropertyValue] = result[studentPropertyValue] || [];
-    result[studentPropertyValue].push(entry);
-    return result;
-  };
+  function groupByProperty(property: keyof Student) {
+    return function (result: { [key: string]: Student[] }, entry: Student) {
+      let studentPropertyValue = entry[property] && entry[property].toString()
+      result[studentPropertyValue] = result[studentPropertyValue] || []
+      result[studentPropertyValue].push(entry)
+      return result
+    }
+  }
 }
