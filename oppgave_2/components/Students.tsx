@@ -130,9 +130,8 @@ export default function Students() {
                   <span>{student.gender}</span>
                   <span>{student.group}</span>
                 </li>
-              ))}
+              ))} <p>Antall: {value.length}</p>
             </ul>
-            <p>Antall: {value.length}</p>
           </>
         )
       )}
