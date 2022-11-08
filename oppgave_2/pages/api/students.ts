@@ -7,15 +7,15 @@ export default async function handler(
 ) {
   switch (req.method?.toLowerCase()) {
     case 'get':
-
       const students = await prisma.student.findMany({})
       return res.status(200).json({ status: true, data: students })
-    case 'post':
+    
+      case 'post':
       const data = req.body
-
       const student = await prisma.student.create({ data })
       return res.status(201).json({ status: true, data: student })
-    default:
+    
+      default:
       return res.status(405).json({
         success: false,
         error: 'Method not allowed',

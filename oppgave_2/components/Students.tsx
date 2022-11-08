@@ -44,9 +44,16 @@ export default function Students() {
     return <h2>Noe gikk galt</h2>
   }
 
-  // Hvis option er 'ingen' - sorter alfabetisk på navn
-  if (option === 'ingen') {
-    data.sort(function (a, b) {
+
+
+  const handleOptionChange = (e: any) => {
+    console.log(e.target.value)
+    setOption(e.target.value)
+  }
+
+  let groupedData : { [key: string]: Student[]} = {};
+  
+  if (option === 'ingen') {data.sort(function (a, b) {
       if (a.title < b.title) {
         return -1
       }
@@ -55,23 +62,21 @@ export default function Students() {
       }
       return 0
     })
+    groupedData = {
+      'ingen': data
+    }
   }
-
-  const handleOptionChange = (e: any) => {
-    console.log(e.target.value)
-    setOption(e.target.value)
-  }
-
-  let groupedData: { [x: string]: Student[] } = {}
-
   if (option === 'alder') {
-    groupedData = data.reduce(groupByProperty('age'), Object.create(null))
+    groupedData = (data.reduce(groupByProperty("age"), {}));
+    console.log(groupedData)
   }
   if (option === 'kjonn') {
-    groupedData = data.reduce(groupByProperty('gender'), Object.create(null))
+    groupedData = (data.reduce(groupByProperty("gender"), {}));
+    console.log(groupedData)
   }
   if (option === 'klasse') {
-    groupedData = data.reduce(groupByProperty('group'), Object.create(null))
+    groupedData = (data.reduce(groupByProperty("group"), {}));
+    console.log(groupedData)
   }
 
   return (
@@ -112,7 +117,7 @@ export default function Students() {
           />
         </section>
       </form>
-      {Object.entries(groupedData).forEach(
+      {Object.entries(groupedData).map(
         ([key, value]: [string, Student[]]) => (
           <>
             <h2>Gruppering etter {key}:</h2>
@@ -127,12 +132,14 @@ export default function Students() {
                 </li>
               ))}
             </ul>
+            <p>Antall: {value.length}</p>
           </>
         )
       )}
     </>
   )
 }
+
 function groupByProperty(property: keyof Student) {
   return function (result: { [key: string]: Student[] }, entry: Student) {
     let studentPropertyValue = entry[property] && entry[property].toString();
