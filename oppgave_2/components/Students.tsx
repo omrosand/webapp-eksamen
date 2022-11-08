@@ -118,7 +118,9 @@ export default function Students() {
       </form>
       {Object.entries(groupedData).map(([key, value]: [string, Student[]]) => (
         <>
-          <h2>Gruppering etter {key}:</h2>
+          <h2>
+            Gruppering etter {option}: {key}
+          </h2>
           <ul>
             {value.map((student: Student) => (
               <li key={student.id}>
