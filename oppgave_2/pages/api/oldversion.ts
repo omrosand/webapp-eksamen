@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 
 type Student = {
   id: string
-  name: string
+  title: string
   gender: string
   age: number
   group: string

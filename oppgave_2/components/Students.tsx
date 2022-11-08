@@ -1,9 +1,17 @@
 import { useEffect, useState } from 'react'
 import { getStudents } from '../api/students'
 
+type Student = {
+  id: string
+  title: string
+  gender: string
+  age: number
+  group: string
+}
+
 export default function Students() {
   const [option, setOption] = useState('ingen')
-  const [data, setData] = useState<any[]>([])
+  const [data, setData] = useState<Student[]>([])
   const [status, setStatus] = useState('')
   const [error, setError] = useState({})
 
@@ -54,16 +62,18 @@ export default function Students() {
     setOption(e.target.value)
   }
 
+  let groupedData: { [x: string]: Student[] } = {}
+
   if (option === 'alder') {
-    data.reduce(groupByProperty("age"), Object.create(null))
+    groupedData = data.reduce(groupByProperty('age'), Object.create(null))
   }
   if (option === 'kjonn') {
-    data.reduce(groupByProperty("gender"), Object.create(null))
+    groupedData = data.reduce(groupByProperty('gender'), Object.create(null))
   }
   if (option === 'klasse') {
-    data.reduce(groupByProperty("group"), Object.create(null))
+    groupedData = data.reduce(groupByProperty('group'), Object.create(null))
   }
-  
+
   return (
     <>
       <form>
@@ -102,25 +112,32 @@ export default function Students() {
           />
         </section>
       </form>
-      <h2>Gruppering etter {option}:</h2>
-      <ul>
-        {data.map((student) => (
-          <li key={student.id}>
-            <span>{student.id}</span>
-            <span>{student.title}</span>
-            <span>{student.age}</span>
-            <span>{student.gender}</span>
-            <span>{student.group}</span>
-          </li>
-        ))}
-      </ul>
+      {Object.entries(groupedData).forEach(
+        ([key, value]: [string, Student[]]) => (
+          <>
+            <h2>Gruppering etter {key}:</h2>
+            <ul>
+              {value.map((student: Student) => (
+                <li key={student.id}>
+                  <span>{student.id}</span>
+                  <span>{student.title}</span>
+                  <span>{student.age}</span>
+                  <span>{student.gender}</span>
+                  <span>{student.group}</span>
+                </li>
+              ))}
+            </ul>
+          </>
+        )
+      )}
     </>
   )
 }
-function groupByProperty(property: string) {
-  return function (result: { [x: string]: any[] }, entry: { [x: string]: string | number }) {
-    result[entry[property]] = result[entry[property]] || [];
-    result[entry[property]].push(entry);
+function groupByProperty(property: keyof Student) {
+  return function (result: { [key: string]: Student[] }, entry: Student) {
+    let studentPropertyValue = entry[property] && entry[property].toString();
+    result[studentPropertyValue] = result[studentPropertyValue] || [];
+    result[studentPropertyValue].push(entry);
     return result;
   };
 }
