@@ -1,25 +1,25 @@
 # /api/weeks
 
-GET:  
+**GET:**  
 Henter ut alle uker i året med ukedager og ansatte på hver dag.
 
 # /api/weeks/{id}
 
-GET:  
+**GET:**  
 Henter ut én enkelt uke med dager og ansatt på hver dag.
 
 # /api/employees
 
-GET:  
+**GET:**  
 Henter ut alle ansatte med tilhørende id, navn og rules.
 
-POST:  
+**POST:**  
 Lager en ny ansatt med tilhørende id, navn og rules.
 
 # /api/employees/{id}
 
-GET:  
+**GET:**  
 Henter ut én enkelt ansatt med id, navn og rules.
 
-PATCH:  
+**PATCH:**  
 Oppdaterer navn på ansatt.
