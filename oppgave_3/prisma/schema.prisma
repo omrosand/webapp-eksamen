@@ -10,3 +10,24 @@ datasource db {
 generator dbml {
   provider = "prisma-dbml-generator"
 }
+
+model Week {
+  number Int   @id
+  days   Day[]
+}
+
+model Day {
+  id         String   @id @default(cuid())
+  name       String
+  employee   Employee @relation(fields: [employeeId], references: [id])
+  Week       Week     @relation(fields: [weekNumber], references: [number])
+  weekNumber Int
+  employeeId Int
+}
+
+model Employee {
+  id    Int    @id
+  name  String
+  rules String
+  days  Day[]
+}
