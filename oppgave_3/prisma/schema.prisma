@@ -11,16 +11,24 @@ generator dbml {
   provider = "prisma-dbml-generator"
 }
 
+model Year {
+  id    String @id @default(cuid())
+  weeks Week[]
+}
+
 model Week {
-  number Int   @id
+  number String @id @default(cuid())
+  week   Int    @unique
   days   Day[]
+  year   Year   @relation(fields: [yearId], references: [id])
+  yearId String
 }
 
 model Day {
   id         String   @id @default(cuid())
   name       String
   employee   Employee @relation(fields: [employeeId], references: [id])
-  Week       Week     @relation(fields: [weekNumber], references: [number])
+  Week       Week     @relation(fields: [weekNumber], references: [week])
   weekNumber Int
   employeeId Int
 }
