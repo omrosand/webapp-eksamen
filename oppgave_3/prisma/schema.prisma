@@ -30,11 +30,11 @@ model Day {
   employee   Employee @relation(fields: [employeeId], references: [id])
   week       Week     @relation(fields: [weekId], references: [id])
   weekId     String
-  employeeId Int
+  employeeId String
 }
 
 model Employee {
-  id    Int    @id
+  id    String @id @default(cuid())
   name  String
   rules String
   days  Day[]
