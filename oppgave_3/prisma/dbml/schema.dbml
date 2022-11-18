@@ -21,11 +21,11 @@ Table Day {
   employee Employee [not null]
   week Week [not null]
   weekId String [not null]
-  employeeId Int [not null]
+  employeeId String [not null]
 }
 
 Table Employee {
-  id Int [pk]
+  id String [pk]
   name String [not null]
   rules String [not null]
   days Day [not null]

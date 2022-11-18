@@ -10,10 +10,9 @@ export const getEmployees = (options: any) => {
   })
 }
 
-export const postEmployee = (data: any, options: any) => {
+export const postEmployee = (data: any) => {
   return fetcher(EMPLOYEES_URL, {
     method: 'POST',
-    ...options,
     body: JSON.stringify(data),
   })
 }

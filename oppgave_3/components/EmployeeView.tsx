@@ -7,15 +7,15 @@ export default function EmployeeView() {
   const [data, setData] = useState({})
   const [error, setError] = useState({})
 
-  const isLoading = status === 'loading'
-  const isError = status === 'error'
-  const isSuccess = status === 'success'
+  const isLoading = status === 'Loading...'
+  const isError = status === 'Error'
+  const isSuccess = status === 'Success'
 
   const handleSubmit = async (event: any) => {
     event.preventDefault()
     setStatus('Loading...')
     try {
-      const result = await postEmployee({ name }, 'test')
+      const result = await postEmployee({ name, rules: 'default rules' })
       setStatus('Success')
       setData(result)
     } catch (error) {
@@ -37,7 +37,11 @@ export default function EmployeeView() {
 
   return (
     <div className="wrapper">
-      <h2>Legg til ansatt</h2>
+      {isSuccess ? (
+        <h2>{name} er lagt til som ansatt</h2>
+      ) : (
+        <h2>Legg til ansatt</h2>
+      )}
       <form onSubmit={handleSubmit}>
         <input
           type="text"
