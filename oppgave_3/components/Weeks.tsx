@@ -1,7 +1,7 @@
 export default function Weeks() {
-return (
+  return (
     <>
-        <h2>Uker</h2>
+      <h2>Uker</h2>
     </>
-)
+  )
 }
