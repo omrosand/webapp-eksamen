@@ -6,7 +6,7 @@ export default async function handler(
 ) {
   switch (req.method?.toLowerCase()) {
     case 'get':
-      return res.status(200).json({ success: true, data: ['index'] })
+      return res.status(200).json({ success: true, data: [] })
     default:
       return res
         .status(400)

@@ -7,10 +7,26 @@ export default async function handler(
   switch (req.method?.toLowerCase()) {
     case 'get':
       const id = req.query.id
-      return res.status(200).json({ success: true, data: [] })
+      if (!id)
+        return res.status(400).json({ success: false, error: 'No Id found' })
+      const employee = await prisma.employee.findMany({
+        where: {
+          id,
+        },
+      })
+
+      if (!employee)
+        return res
+          .status(404)
+          .json({ success: false, error: 'Employee not found' })
+      return res.status(200).json({
+        success: true,
+        resource: `/employees/${id}`,
+        data: employee,
+      })
     default:
       return res
         .status(400)
-        .json({ success: false, error: 'Only GET method allowed' })
+        .json({ success: false, error: 'Only GET and PUT method allowed' })
   }
 }

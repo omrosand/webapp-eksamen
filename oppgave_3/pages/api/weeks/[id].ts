@@ -7,7 +7,11 @@ export default async function handler(
   switch (req.method?.toLowerCase()) {
     case 'get':
       const id = req.query.id
-      return res.status(200).json({ success: true, data: [`'with id' ${id}`] })
+      return res.status(200).json({
+        success: true,
+        resource: `/weeks/${id}`,
+        data: [],
+      })
     default:
       return res
         .status(400)

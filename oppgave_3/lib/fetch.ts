@@ -20,7 +20,7 @@ export default async function (url: string, options: any): Promise<any> {
       }
       throw error
     }
-    const result = data ? data : { status: true, data: {} }
+    const result = data ? data : { success: true, data: {} }
     return result
   } catch (error) {
     throw error
