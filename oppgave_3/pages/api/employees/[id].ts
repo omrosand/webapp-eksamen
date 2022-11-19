@@ -5,7 +5,7 @@ export default async function handler(
   res: NextApiResponse<any>
 ) {
   switch (req.method?.toLowerCase()) {
-    case 'get':
+    case 'get': {
       const id = req.query.id as string
       if (!id)
         return res.status(400).json({ success: false, error: 'No Id found' })
@@ -14,7 +14,6 @@ export default async function handler(
           id: id,
         },
       })
-
       if (!employee)
         return res
           .status(404)
@@ -24,6 +23,24 @@ export default async function handler(
         resource: `/employees/${id}`,
         data: employee,
       })
+    }
+    case 'put': {
+      const id = req.query.id as string
+      const employee = await prisma.employee.findUnique({ where: { id } })
+      const updatedEmployee = await prisma.employee.update({
+        where: {
+          id: id,
+        },
+        data: {
+          name: req.body.name,
+        },
+      })
+      return res.status(201).json({
+        success: true,
+        resource: `/employees/${id}`,
+        data: updatedEmployee,
+      })
+    }
     default:
       return res
         .status(400)
