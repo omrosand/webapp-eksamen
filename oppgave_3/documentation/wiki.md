@@ -21,5 +21,5 @@ Lager en ny ansatt med tilhørende id, navn og rules.
 **GET:**  
 Henter ut én enkelt ansatt med id, navn og rules.
 
-**PATCH:**  
-Oppdaterer navn på ansatt.
+**PUT:**  
+Oppdaterer navn på ansatt i databasen.
