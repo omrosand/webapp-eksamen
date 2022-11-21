@@ -1,15 +1,25 @@
-import React, { useState } from 'react'
-import { postEmployee } from '../api/employees'
+import React, { useEffect, useState } from 'react'
+import { getEmployees, postEmployee, putEmployee } from '../api/employees'
 
 export default function EmployeeView() {
   const [status, setStatus] = useState('')
   const [name, setName] = useState('')
+  const [updateName, setUpdateName] = useState('')
   const [data, setData] = useState({})
+  const [employeeList, setEmployeeList] = useState<any[]>([])
   const [error, setError] = useState({})
 
   const isLoading = status === 'Loading...'
   const isError = status === 'Error'
   const isSuccess = status === 'Success'
+
+  useEffect(() => {
+    const fetchEmployees = async () => {
+      const data = await getEmployees({})
+      setEmployeeList(data.data)
+    }
+    fetchEmployees()
+  }, [data])
 
   const handleSubmit = async (event: any) => {
     event.preventDefault()
@@ -25,6 +35,9 @@ export default function EmployeeView() {
         setStatus('')
       }, 2000)
     }
+  }
+  const editName = (e: any) => {
+    console.log(e.target.id)
   }
 
   if (isLoading) {
@@ -50,8 +63,18 @@ export default function EmployeeView() {
         />
         <button type="submit">Legg til ansatt</button>
       </form>
-      <p>Data: {JSON.stringify(data)}</p>
-      <p>Error: {JSON.stringify(error)}</p>
+      <ul>
+        {employeeList.map((employee) => (
+          <>
+            <li key={employee.id}>
+              {employee.name}
+              <button type="submit" id={employee.id} onClick={editName}>
+                Endre navn
+              </button>
+            </li>
+          </>
+        ))}
+      </ul>
     </div>
   )
 }
