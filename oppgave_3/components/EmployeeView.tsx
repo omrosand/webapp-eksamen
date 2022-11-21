@@ -4,7 +4,7 @@ import { getEmployees, postEmployee, putEmployee } from '../api/employees'
 export default function EmployeeView() {
   const [status, setStatus] = useState('')
   const [name, setName] = useState('')
-  const [updateName, setUpdateName] = useState('')
+  const [newName, setNewName] = useState('')
   const [data, setData] = useState({})
   const [employeeList, setEmployeeList] = useState<any[]>([])
   const [error, setError] = useState({})
@@ -36,8 +36,11 @@ export default function EmployeeView() {
       }, 2000)
     }
   }
-  const editName = (e: any) => {
+  const editName = async (e: any) => {
+    const id = e.target.value
     console.log(e.target.id)
+    const result = await putEmployee(id, newName)
+    console.log(result)
   }
 
   if (isLoading) {
@@ -50,11 +53,7 @@ export default function EmployeeView() {
 
   return (
     <div className="wrapper">
-      {isSuccess ? (
-        <h2>{name} er lagt til som ansatt</h2>
-      ) : (
-        <h2>Legg til ansatt</h2>
-      )}
+      <h2>Legg til ny ansatt</h2>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -66,12 +65,15 @@ export default function EmployeeView() {
       <ul>
         {employeeList.map((employee) => (
           <>
-            <li key={employee.id}>
-              {employee.name}
-              <button type="submit" id={employee.id} onClick={editName}>
-                Endre navn
-              </button>
-            </li>
+            <li key={employee.id}>{employee.name}</li>
+            <input
+              type="text"
+              value={newName}
+              onChange={(event) => setNewName(event.target.value)}
+            />
+            <button type="submit" id={employee.id} onClick={editName}>
+              Endre navn
+            </button>
           </>
         ))}
       </ul>
