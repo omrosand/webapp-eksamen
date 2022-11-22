@@ -10,18 +10,18 @@ Table Year {
 Table Week {
   id String [pk]
   week Int [unique, not null]
-  days Day [not null]
-  year Year [not null]
   yearId String [not null]
+  year Year [not null]
+  days Day [not null]
 }
 
 Table Day {
   id String [pk]
   name String [not null]
-  employee Employee [not null]
-  week Week [not null]
   weekId String [not null]
   employeeId String [not null]
+  week Week [not null]
+  employee Employee [not null]
 }
 
 Table Employee {
@@ -33,6 +33,6 @@ Table Employee {
 
 Ref: Week.yearId > Year.id
 
-Ref: Day.employeeId > Employee.id
-
 Ref: Day.weekId > Week.id
+
+Ref: Day.employeeId > Employee.id
