@@ -2,13 +2,13 @@ generator client {
   provider = "prisma-client-js"
 }
 
+generator dbml {
+  provider = "prisma-dbml-generator"
+}
+
 datasource db {
   provider = "sqlite"
   url      = "file:./dev.db"
-}
-
-generator dbml {
-  provider = "prisma-dbml-generator"
 }
 
 model Year {
@@ -19,18 +19,18 @@ model Year {
 model Week {
   id     String @id @default(cuid())
   week   Int    @unique
-  days   Day[]
-  year   Year   @relation(fields: [yearId], references: [id])
   yearId String
+  year   Year   @relation(fields: [yearId], references: [id])
+  days   Day[]
 }
 
 model Day {
   id         String   @id @default(cuid())
   name       String
-  employee   Employee @relation(fields: [employeeId], references: [id])
-  week       Week     @relation(fields: [weekId], references: [id])
   weekId     String
   employeeId String
+  week       Week     @relation(fields: [weekId], references: [id])
+  employee   Employee @relation(fields: [employeeId], references: [id])
 }
 
 model Employee {
