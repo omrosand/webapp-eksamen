@@ -53,6 +53,7 @@ export default function EmployeeView() {
 
   return (
     <div className="wrapper">
+      <p>Totalt {employeeList.length} ansatte.</p>
       <h2>Legg til ny ansatt</h2>
       <form onSubmit={handleSubmit}>
         <input
@@ -63,9 +64,11 @@ export default function EmployeeView() {
         <button type="submit">Legg til ansatt</button>
       </form>
       <ul>
-        {employeeList.map((employee) => (
+        {employeeList.map((employee, index) => (
           <>
-            <li key={employee.id}>{employee.name}</li>
+            <li key={employee.id}>
+              {index + 1}. {employee.name}
+            </li>
             <input
               type="text"
               value={newName}
