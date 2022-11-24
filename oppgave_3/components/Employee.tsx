@@ -4,12 +4,12 @@ import { getEmployee, putEmployee } from '../api/employees'
 import Link from 'next/link'
 
 const Employee = () => {
-  const [employee, setEmployee] = useState({})
+  const [employee, setEmployee] = useState<any>({})
   const [inputName, setInputName] = useState('')
   const [data, setData] = useState({})
 
   const router = useRouter()
-  const employeeId = router.query?.id
+  const employeeId = router.query?.id as string
 
   useEffect(() => {
     const fetchEmployee = async () => {
