@@ -4,7 +4,7 @@ export type Error = { success: false; error: string }
 export type Result = Data | Error
 
 export type Employee = {
-  id: number
+  id: string
   name: string
   rules: string
 }

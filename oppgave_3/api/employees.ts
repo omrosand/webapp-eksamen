@@ -17,10 +17,9 @@ export const postEmployee = (data: any) => {
   })
 }
 
-export const getEmployee = (id: string, options: any) => {
+export const getEmployee = (id: string) => {
   return fetcher(`${EMPLOYEES_URL}/${id}`, {
     method: 'GET',
-    ...options,
   })
 }
 

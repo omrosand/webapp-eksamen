@@ -1,10 +1,10 @@
+import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import { getEmployees, postEmployee, putEmployee } from '../api/employees'
 
 export default function EmployeeView() {
   const [status, setStatus] = useState('')
   const [name, setName] = useState('')
-  const [newName, setNewName] = useState('')
   const [data, setData] = useState({})
   const [employeeList, setEmployeeList] = useState<any[]>([])
   const [error, setError] = useState({})
@@ -36,12 +36,6 @@ export default function EmployeeView() {
       }, 2000)
     }
   }
-  const editName = async (e: any) => {
-    const id = e.target.value
-    console.log(e.target.id)
-    const result = await putEmployee(id, newName)
-    console.log(result)
-  }
 
   if (isLoading) {
     return <p>Henter data ...</p>
@@ -65,19 +59,18 @@ export default function EmployeeView() {
       </form>
       <ul>
         {employeeList.map((employee, index) => (
-          <>
-            <li key={employee.id}>
+          <div key={employee.id}>
+            <li>
               {index + 1}. {employee.name}
             </li>
-            <input
-              type="text"
-              value={newName}
-              onChange={(event) => setNewName(event.target.value)}
-            />
-            <button type="submit" id={employee.id} onClick={editName}>
-              Endre navn
-            </button>
-          </>
+            <Link
+              href={{
+                pathname: `/employees/${employee.id}`,
+              }}
+            >
+              Gå til ansatt
+            </Link>
+          </div>
         ))}
       </ul>
     </div>

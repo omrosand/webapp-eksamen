@@ -1,11 +1,10 @@
 import type { NextPage } from 'next'
-import EmployeeView from '../components/EmployeeView'
+import Employee from '../../components/Employee'
 
 const Employees: NextPage = () => {
   return (
     <main>
-      <h1>Ansatt oversikt</h1>
-      <EmployeeView />
+      <Employee />
     </main>
   )
 }
