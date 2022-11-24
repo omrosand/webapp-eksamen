@@ -26,6 +26,6 @@ export const getEmployee = (id: string) => {
 export const putEmployee = (id: string, name: string) => {
   return fetcher(`${EMPLOYEES_URL}/${id}`, {
     method: 'PUT',
-    body: name,
+    body: JSON.stringify({ name }),
   })
 }

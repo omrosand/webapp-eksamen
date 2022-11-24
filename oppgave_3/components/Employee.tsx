@@ -18,12 +18,12 @@ const Employee = () => {
       setEmployee(data.data)
     }
     fetchEmployee()
-  }, [employeeId, inputName])
+  }, [employeeId, data])
 
   const changeName = async (event: any) => {
     event.preventDefault()
     try {
-      const result = await putEmployee({ id: employeeId, name: inputName })
+      const result = await putEmployee(employeeId, inputName)
       setData(result)
     } catch (error) {
       console.log(error)
