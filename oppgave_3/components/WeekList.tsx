@@ -14,7 +14,7 @@ export default function Weeks() {
     fetchWeeks()
   }, [data])
 
-  const toggleWeekView = (e) => {
+  const toggleWeekView = (e: any) => {
     setSummary((prev) => !prev)
     if (summary) return
     console.log(e.currentTarget.id)
@@ -35,7 +35,13 @@ export default function Weeks() {
             <h2>Uke {week.week}</h2>
             <details onToggle={toggleWeekView} id={week.id}>
               <summary>Se dager</summary>
-              <ul></ul>
+              <ul>
+                {week.days.map((day: any) => (
+                  <li key={day.id}>
+                    {day.name} {day.employee.name}
+                  </li>
+                ))}
+              </ul>
             </details>
           </li>
         ))}
