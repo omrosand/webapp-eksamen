@@ -32,10 +32,23 @@ const Employee = () => {
 
   return (
     <>
-      <h2>{employee.name}</h2>
-      <h3>ID: {employee.id}</h3>
-      <p>Rules: {employee.rules}</p>
-      <form onSubmit={changeName}>
+      <table>
+        <tbody>
+          <tr>
+            <th>Name: </th>
+            <td>{employee.name}</td>
+          </tr>
+          <tr>
+            <th>Id: </th>
+            <td>{employee.id}</td>
+          </tr>
+          <tr>
+            <th>Antall jobbdager: </th>
+            <td>{employee.days?.length}</td>
+          </tr>
+        </tbody>
+      </table>
+      <form className="editNameForm" onSubmit={changeName}>
         <label>Endre navn:</label>
         <input
           type="text"
@@ -44,6 +57,19 @@ const Employee = () => {
         />
         <button type="submit">Endre</button>
       </form>
+      <h2>Jobbdager: </h2>
+      <section className="workDays">
+        {employee.days?.length > 0 ? (
+          employee.days?.map((day: any) => (
+            <div className="workDayCard" key={day.id}>
+              <h3>Uke {day.week.week}</h3>
+              <p>{day.name}</p>
+            </div>
+          ))
+        ) : (
+          <h3>{employee.name} har ingen lunsjvakter.</h3>
+        )}
+      </section>
     </>
   )
 }

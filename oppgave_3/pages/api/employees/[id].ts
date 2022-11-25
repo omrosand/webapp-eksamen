@@ -13,6 +13,13 @@ export default async function handler(
         where: {
           id: id,
         },
+        include: {
+          days: {
+            include: {
+              week: true,
+            },
+          },
+        },
       })
       if (!employee)
         return res

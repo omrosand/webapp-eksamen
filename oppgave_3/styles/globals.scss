@@ -238,6 +238,9 @@ hr {
     color: lightskyblue;
   }
 }
+.editNameForm {
+  margin-bottom: 1em;
+}
 nav {
   ul {
     display: flex;
@@ -257,4 +260,27 @@ nav {
       }
     }
   }
+}
+table {
+  margin-bottom: 1em;
+}
+tr {
+  th {
+    text-align: start;
+    width: 150px;
+  }
+  td {
+    text-align: start;
+    width: 150px;
+  }
+}
+.workDays {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+}
+.workDayCard {
+  @extend .weekNumber;
+  width: 100px;
+  cursor: default;
 }
