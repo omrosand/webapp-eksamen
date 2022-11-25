@@ -25,6 +25,7 @@ const Employee = () => {
     try {
       const result = await putEmployee(employeeId, inputName)
       setData(result)
+      setInputName('')
     } catch (error) {
       console.log(error)
     }
