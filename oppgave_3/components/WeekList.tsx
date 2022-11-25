@@ -1,5 +1,8 @@
+import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { getWeeks } from '../api/weeks'
+
+// TODO: Erstatt any med typede props (samme på Weeks.tsx)
 
 export default function Weeks({ weeks }: any) {
   const [summary, setSummary] = useState(false)
@@ -21,11 +24,15 @@ export default function Weeks({ weeks }: any) {
             {week.days.length > 0 ? (
               <details onToggle={toggleWeekView} id={week.id}>
                 <summary>Se dager</summary>
-                <ul>
+                <ul className="weekDetails">
                   {week.days.map((day: any) => (
                     <li key={day.id}>
                       <span>{day.name}</span>
-                      <span>{day.employee.name}</span>
+                      <span>
+                        <Link href={`/employees/${day.employee.id}`}>
+                          {day.employee.name}
+                        </Link>
+                      </span>
                     </li>
                   ))}
                 </ul>

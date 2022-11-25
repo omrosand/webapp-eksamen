@@ -10,9 +10,8 @@ export const getWeeks = (options: any) => {
   })
 }
 
-export const getWeek = (id: string, options: any) => {
+export const getWeek = (id: string) => {
   return fetcher(`${WEEKS_URL}/${id}`, {
     method: 'GET',
-    ...options,
   })
 }

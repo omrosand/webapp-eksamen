@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { getEmployee, putEmployee } from '../api/employees'
-import Link from 'next/link'
 
 const Employee = () => {
   const [employee, setEmployee] = useState<any>({})
@@ -33,13 +32,8 @@ const Employee = () => {
 
   return (
     <>
-      <button>
-        <h3>
-          <Link href="/employees">Tilbake til alle ansatte</Link>
-        </h3>
-      </button>
-      <h1>{employee.name}</h1>
-      <h2>ID: {employee.id}</h2>
+      <h2>{employee.name}</h2>
+      <h3>ID: {employee.id}</h3>
       <p>Rules: {employee.rules}</p>
       <form onSubmit={changeName}>
         <label>Endre navn:</label>
