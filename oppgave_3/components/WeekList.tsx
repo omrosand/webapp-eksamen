@@ -33,17 +33,21 @@ export default function Weeks() {
         {weeks.map((week) => (
           <li className="weekListElement" key={week.id}>
             <h2>Uke {week.week}</h2>
-            <details onToggle={toggleWeekView} id={week.id}>
-              <summary>Se dager</summary>
-              <ul>
-                {week.days.map((day: any) => (
-                  <li key={day.id}>
-                    <span>{day.name}</span>
-                    <span>{day.employee.name}</span>
-                  </li>
-                ))}
-              </ul>
-            </details>
+            {week.days.length > 0 ? (
+              <details onToggle={toggleWeekView} id={week.id}>
+                <summary>Se dager</summary>
+                <ul>
+                  {week.days.map((day: any) => (
+                    <li key={day.id}>
+                      <span>{day.name}</span>
+                      <span>{day.employee.name}</span>
+                    </li>
+                  ))}
+                </ul>
+              </details>
+            ) : (
+              <h3>Friuke</h3>
+            )}
           </li>
         ))}
       </ul>
