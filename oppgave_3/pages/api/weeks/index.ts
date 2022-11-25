@@ -7,7 +7,13 @@ export default async function handler(
 ) {
   switch (req.method?.toLowerCase()) {
     case 'get':
-      const weeks = await prisma.week.findMany({})
+      const weeks = await prisma.week.findMany({
+        include: {
+          days: {
+            include: { employee: true },
+          },
+        },
+      })
       return res.status(200).json({
         success: true,
         resource: '/weeks/index',

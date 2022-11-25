@@ -17,16 +17,15 @@ export const postEmployee = (data: any) => {
   })
 }
 
-export const getEmployee = (id: string, options: any) => {
+export const getEmployee = (id: string) => {
   return fetcher(`${EMPLOYEES_URL}/${id}`, {
     method: 'GET',
-    ...options,
   })
 }
 
 export const putEmployee = (id: string, name: string) => {
   return fetcher(`${EMPLOYEES_URL}/${id}`, {
     method: 'PUT',
-    body: name,
+    body: JSON.stringify({ name }),
   })
 }

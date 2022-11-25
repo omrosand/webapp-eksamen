@@ -13,6 +13,11 @@ export default async function handler(
         where: {
           id: id,
         },
+        include: {
+          days: {
+            include: { employee: true },
+          },
+        },
       })
       if (!week)
         return res.status(404).json({ success: false, error: 'Week not found' })
