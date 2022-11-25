@@ -57,9 +57,9 @@ export default function EmployeeView() {
         />
         <button type="submit">Legg til ansatt</button>
       </form>
-      <ul>
+      <ul className="employees">
         {employeeList.map((employee, index) => (
-          <div key={employee.id}>
+          <div className="employee" key={employee.id}>
             <li>
               {index + 1}. {employee.name}
             </li>

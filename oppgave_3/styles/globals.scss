@@ -183,3 +183,21 @@ hr {
     }
   }
 }
+.employees {
+  display: flex;
+  flex-wrap: wrap;
+}
+.employee {
+  width: 120px;
+  padding: 0.8em 1em;
+  margin: 0.5em 0.5em 0 0;
+  color: white;
+  font-size: 1.3rem;
+  background-color: rgb(63, 63, 63);
+  li {
+    font-weight: 700;
+  }
+  a {
+    color: lightskyblue;
+  }
+}

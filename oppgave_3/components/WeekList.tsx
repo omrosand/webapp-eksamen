@@ -14,6 +14,11 @@ export default function Weeks() {
     fetchWeeks()
   }, [data])
 
+  const toggleWeekView = (e) => {
+    setSummary((prev) => !prev)
+    if (summary) return
+    console.log(e.currentTarget.id)
+  }
   return (
     <>
       <div className="weekWrapper">
@@ -28,10 +33,8 @@ export default function Weeks() {
         {weeks.map((week) => (
           <li className="weekListElement" key={week.id}>
             <h2>Uke {week.week}</h2>
-            <details onToggle={() => setSummary((prev) => !prev)}>
-              <summary>
-                {!summary ? <span>Se dager</span> : <span>Lukk dager</span>}
-              </summary>
+            <details onToggle={toggleWeekView} id={week.id}>
+              <summary>Se dager</summary>
               <ul></ul>
             </details>
           </li>
