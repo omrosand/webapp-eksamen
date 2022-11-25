@@ -38,7 +38,8 @@ export default function Weeks() {
               <ul>
                 {week.days.map((day: any) => (
                   <li key={day.id}>
-                    {day.name} {day.employee.name}
+                    <span>{day.name}</span>
+                    <span>{day.employee.name}</span>
                   </li>
                 ))}
               </ul>
