@@ -8,15 +8,39 @@ import Weeks from '../components/Weeks'
 
 const Home: NextPage = () => {
   const [data, setData] = useState({})
+  const [error, setError] = useState()
+  const [status, setStatus] = useState('')
   const [weeks, setWeeks] = useState<any[]>([])
+
+  const isLoading = status === 'Fetching data...'
+  const isSuccess = status === 'Fullført'
+  const isError = status === 'Something went wrong'
 
   useEffect(() => {
     const fetchWeeks = async () => {
-      const data = await getWeeks({})
-      setWeeks(data.data)
+      setStatus('Fetching data...')
+      try {
+        const data = await getWeeks({})
+        setWeeks(data.data)
+        setStatus('Fetch complete')
+      } catch (error) {
+        setError(error as any)
+        setStatus('Something went wrong')
+        setTimeout(() => {
+          setStatus('')
+        }, 2000)
+      }
     }
     fetchWeeks()
-  }, [data])
+  }, [])
+
+  if (isLoading) {
+    return <h1>Henter ukeoversikt...</h1>
+  }
+  if (isError) {
+    console.log(error)
+    return <h1>Noe gikk galt...</h1>
+  }
 
   return (
     <main>

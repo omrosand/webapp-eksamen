@@ -6,18 +6,29 @@ const Employee = () => {
   const [employee, setEmployee] = useState<any>({})
   const [inputName, setInputName] = useState('')
   const [data, setData] = useState({})
+  const [status, setStatus] = useState('')
+  const [error, setError] = useState()
+
+  const isLoading = status === 'Fetching data...'
+  const isSuccess = status === 'Fullført'
+  const isError = status === 'Something went wrong'
 
   const router = useRouter()
   const employeeId = router.query?.id as string
 
   useEffect(() => {
     const fetchEmployee = async () => {
-      if (!employeeId) return
-      const data = await getEmployee(employeeId)
-      setEmployee(data.data)
+      try {
+        if (!employeeId) return
+        const data = await getEmployee(employeeId)
+        setEmployee(data.data)
+      } catch (error) {
+        setError(error as any)
+        setStatus('Something went wrong')
+      }
     }
     fetchEmployee()
-  }, [employeeId, data])
+  }, [employeeId])
 
   const changeName = async (event: any) => {
     event.preventDefault()
@@ -28,6 +39,14 @@ const Employee = () => {
     } catch (error) {
       console.log(error)
     }
+  }
+
+  if (isLoading) {
+    return <h1>Henter ukeoversikt...</h1>
+  }
+  if (isError) {
+    console.log(error)
+    return <h1>Noe gikk galt...</h1>
   }
 
   return (
