@@ -1,18 +1,8 @@
 import { useEffect, useState } from 'react'
 import { getWeeks } from '../api/weeks'
 
-export default function Weeks() {
-  const [data, setData] = useState({})
-  const [weeks, setWeeks] = useState<any[]>([])
+export default function Weeks({ weeks }: any) {
   const [summary, setSummary] = useState(false)
-
-  useEffect(() => {
-    const fetchWeeks = async () => {
-      const data = await getWeeks({})
-      setWeeks(data.data)
-    }
-    fetchWeeks()
-  }, [data])
 
   const toggleWeekView = (e: any) => {
     setSummary((prev) => !prev)
@@ -21,16 +11,8 @@ export default function Weeks() {
   }
   return (
     <>
-      <div className="weekWrapper">
-        {weeks.map((week) => (
-          <section key={week.id}>
-            <h2 className="weekNumber">{week.week}</h2>
-          </section>
-        ))}
-      </div>
-      <hr></hr>
       <ul>
-        {weeks.map((week) => (
+        {weeks.map((week: any) => (
           <li
             className={week.days.length > 0 ? 'weekListElement' : 'noLunch'}
             key={week.id}
@@ -49,7 +31,7 @@ export default function Weeks() {
                 </ul>
               </details>
             ) : (
-              <h3>Friuke</h3>
+              <h3>Friuke 🥳</h3>
             )}
           </li>
         ))}
