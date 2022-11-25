@@ -31,7 +31,10 @@ export default function Weeks() {
       <hr></hr>
       <ul>
         {weeks.map((week) => (
-          <li className="weekListElement" key={week.id}>
+          <li
+            className={week.days.length > 0 ? 'weekListElement' : 'noLunch'}
+            key={week.id}
+          >
             <h2>Uke {week.week}</h2>
             {week.days.length > 0 ? (
               <details onToggle={toggleWeekView} id={week.id}>

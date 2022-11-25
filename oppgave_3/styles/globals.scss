@@ -207,6 +207,10 @@ hr {
     }
   }
 }
+.noLunch {
+  @extend .weekListElement;
+  background-color: rgb(175, 255, 175);
+}
 .employees {
   display: flex;
   flex-wrap: wrap;
