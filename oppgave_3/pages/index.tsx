@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { getWeeks } from '../api/weeks'
 import Nav from '../components/Nav'
+import SearchEmployee from '../components/SearchEmployee'
 import WeekList from '../components/WeekList'
 import Weeks from '../components/Weeks'
 

@@ -11,6 +11,11 @@ const navElements = [
     path: '/employees',
     id: 2,
   },
+  {
+    name: 'Søk',
+    path: '/employees/search/',
+    id: 3,
+  },
 ]
 
 const Nav = () => (

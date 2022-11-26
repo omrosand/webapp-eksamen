@@ -28,6 +28,7 @@ export default function EmployeeView() {
       const result = await postEmployee({ name, rules: 'default rules' })
       setStatus('Success')
       setData(result)
+      setName('')
     } catch (error) {
       setStatus('Error')
       setError(error as any)
