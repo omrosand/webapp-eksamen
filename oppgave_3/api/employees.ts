@@ -29,3 +29,8 @@ export const putEmployee = (id: string, name: string) => {
     body: JSON.stringify({ name }),
   })
 }
+export const searchEmployee = (query: string) => {
+  return fetcher(`${EMPLOYEES_URL}/${query}`, {
+    method: 'POST',
+  })
+}

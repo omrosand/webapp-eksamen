@@ -48,6 +48,32 @@ export default async function handler(
         data: updatedEmployee,
       })
     }
+    case 'post': {
+      const query = req.query.id as string
+      if (!query)
+        return res.status(400).json({ success: false, error: 'No query found' })
+      const employee = await prisma.employee.findMany({
+        where: {
+          name: { contains: query },
+        },
+        include: {
+          days: {
+            include: {
+              week: true,
+            },
+          },
+        },
+      })
+      if (!employee)
+        return res
+          .status(404)
+          .json({ success: false, error: 'Employee not found' })
+      return res.status(200).json({
+        success: true,
+        resource: `/employees/search/${query}`,
+        data: employee,
+      })
+    }
     default:
       return res
         .status(400)
