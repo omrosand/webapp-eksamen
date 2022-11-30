@@ -19,6 +19,12 @@ export default function Weeks({ weeks }: any) {
       setWeekSpanMessage(`Velg "fra" og "til" ukenummer`)
       return
     }
+    if (parseInt(to) < parseInt(from)) {
+      setWeekSpanMessage(
+        `"Fra" ukenummer kan ikke være større enn "til" ukenummer`
+      )
+      return
+    }
     setWeekSpan({ from: parseInt(from), to: parseInt(to) })
     setWeekSpanMessage('Valgte uker:')
   }
@@ -40,6 +46,7 @@ export default function Weeks({ weeks }: any) {
     if (summary) return
     console.log(e.currentTarget.id)
   }
+
   return (
     <>
       <form onSubmit={handleWeekSpan}>
@@ -50,7 +57,7 @@ export default function Weeks({ weeks }: any) {
           ref={fromRef}
           min="1"
           max="52"
-          defaultValue="1"
+          defaultValue={weekSpan.from}
         />
         <label htmlFor="to">Til: </label>
         <input
@@ -59,7 +66,7 @@ export default function Weeks({ weeks }: any) {
           ref={toRef}
           min="1"
           max="52"
-          defaultValue="52"
+          defaultValue={weekSpan.to}
         />
         <button type="submit">Vis uker</button>
         <button type="button" onClick={() => setWeekSpan({ from: 1, to: 52 })}>
