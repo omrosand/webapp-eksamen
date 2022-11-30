@@ -69,7 +69,7 @@ export default function Students() {
     <>
       <Filter setOption={setOption} />
       {Object.entries(groupedData).map(([key, value]: [string, Student[]]) => (
-        <>
+        <div key={key}>
           {option !== 'ingen' ? (
             <h2>
               Gruppering etter {option}: {key}
@@ -87,7 +87,7 @@ export default function Students() {
             ))}{' '}
             <p className="count">Antall: {value.length}</p>
           </ul>
-        </>
+        </div>
       ))}
     </>
   )
