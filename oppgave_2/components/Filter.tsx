@@ -2,7 +2,6 @@ import { useState } from 'react'
 
 export default function Filter({ setOption }: any) {
   const handleOptionChange = (e: any) => {
-    console.log(e.target.value)
     setOption(e.target.value)
   }
   return (
