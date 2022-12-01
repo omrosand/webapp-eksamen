@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import prisma from '../../../lib/db'
+import * as weekController from '@/features/weeks/weeks.controller'
 
 export default async function handler(
   req: NextApiRequest,
@@ -7,6 +8,8 @@ export default async function handler(
 ) {
   switch (req.method?.toLowerCase()) {
     case 'get':
+      await weekController.listAllWeeks(req, res)
+      
       const weeks = await prisma.week.findMany({
         include: {
           days: {

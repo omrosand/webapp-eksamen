@@ -1,13 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import prisma from '../../../lib/db'
 import { Employee } from '../../../types'
-
-// const testEmployee: Employee = {
-//   id: 729,
-//   name: 'Herr Testesen',
-//   rules: 'rules are meant to be broken',
-// }
-// const testEmployees: Employee[] = [testEmployee]
+import * as employeesController from '@/features/employees/employees.controller'
 
 export default async function handler(
   req: NextApiRequest,
@@ -15,6 +9,8 @@ export default async function handler(
 ) {
   switch (req.method?.toLowerCase()) {
     case 'get':
+      await employeesController.listEmployer(req, res)
+      
       const employees = await prisma.employee.findMany({})
       return res.status(200).json({
         success: true,
@@ -22,6 +18,8 @@ export default async function handler(
         data: employees,
       })
     case 'post':
+      await employeesController.createEmployer(req, res)
+      
       const data = req.body
       if (!data.name)
         return res

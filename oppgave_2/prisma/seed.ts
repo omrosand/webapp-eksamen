@@ -23,12 +23,10 @@ const studentFactory = (count: number) => {
 }
 
 async function main() {
-  console.log(`Start seeding ...`)
   const students = studentFactory(3)
   for (const student of students) {
     await prisma.student.create({ data: student })
   }
-  console.log(`Seeding finished.`)
 }
 
 main()
