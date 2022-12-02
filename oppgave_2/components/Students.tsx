@@ -54,15 +54,12 @@ export default function Students() {
   }
   if (option === 'alder') {
     groupedData = data.reduce(groupByProperty('age'), {})
-    console.log(groupedData)
   }
   if (option === 'kjonn') {
     groupedData = data.reduce(groupByProperty('gender'), {})
-    console.log(groupedData)
   }
   if (option === 'klasse') {
     groupedData = data.reduce(groupByProperty('group'), {})
-    console.log(groupedData)
   }
 
   return (
