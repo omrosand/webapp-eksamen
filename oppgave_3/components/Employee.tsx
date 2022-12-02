@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { getEmployee, putEmployee } from '../api/employees'
 import Link from 'next/link'
+import Button from './Button'
 
 const Employee = () => {
   const [employee, setEmployee] = useState<any>({})
@@ -75,7 +76,7 @@ const Employee = () => {
           value={inputName}
           onChange={(e) => setInputName(e.target.value)}
         />
-        <button type="submit">Endre</button>
+        <Button title="Endre" />
       </form>
       <h2>Jobbdager: </h2>
       <section className="workDays">

@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import { getEmployees, postEmployee, putEmployee } from '../api/employees'
+import Button from './Button'
 
 export default function EmployeeView() {
   const [status, setStatus] = useState('')
@@ -56,7 +57,7 @@ export default function EmployeeView() {
           value={name}
           onChange={(event) => setName(event.target.value)}
         />
-        <button type="submit">Legg til ansatt</button>
+        <Button title="Legg til ansatt" />
       </form>
       <ul className="employees">
         {employeeList.map((employee, index) => (
