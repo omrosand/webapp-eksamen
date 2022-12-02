@@ -6,7 +6,7 @@ Henter ut alle uker i året med ukedager og ansatte på hver dag.
 # /api/weeks/{id}
 
 **GET:**  
-Henter ut én enkelt uke med dager og ansatt på hver dag.
+Henter ut én enkelt uke med dager og én ansatt på hver dag.
 
 # /api/employees
 
@@ -14,7 +14,7 @@ Henter ut én enkelt uke med dager og ansatt på hver dag.
 Henter ut alle ansatte med tilhørende id, navn og rules.
 
 **POST:**  
-Lager en ny ansatt med tilhørende id, navn og rules.
+Lager en ny ansatt med navn og rules. Id blir generert.
 
 # /api/employees/{id}
 
@@ -23,3 +23,6 @@ Henter ut én enkelt ansatt med id, navn og rules.
 
 **PUT:**  
 Oppdaterer navn på ansatt i databasen.
+
+**POST:**
+Sender med søkefrase og henter alle ansatte som inneholder søkefrasen.
