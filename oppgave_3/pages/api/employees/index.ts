@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import prisma from '../../../lib/db'
-import { Employee } from '../../../types'
+// import { Employee } from '../../../types'
 
 // const testEmployee: Employee = {
 //   id: 729,

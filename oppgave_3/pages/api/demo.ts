@@ -14,6 +14,7 @@ export default async function handler(
       async function main() {
         console.log(`Start seeding ...`)
         await prisma.day.deleteMany({})
+        await prisma.override.deleteMany({})
         await prisma.week.deleteMany({})
         await prisma.year.deleteMany({})
         await prisma.employee.deleteMany({})

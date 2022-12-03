@@ -17,11 +17,20 @@ model Year {
 }
 
 model Week {
-  id     String @id @default(cuid())
-  week   Int    @unique
-  yearId String
-  year   Year   @relation(fields: [yearId], references: [id])
-  days   Day[]
+  id       String     @id @default(cuid())
+  week     Int        @unique
+  yearId   String
+  year     Year       @relation(fields: [yearId], references: [id])
+  days     Day[]
+  override Override[]
+}
+
+model Override {
+  id       String @id @default(cuid())
+  employee String
+  day      String
+  week     Week   @relation(fields: [weekId], references: [id])
+  weekId   String
 }
 
 model Day {

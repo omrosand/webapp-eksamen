@@ -17,6 +17,7 @@ export default async function handler(
           days: {
             include: { employee: true },
           },
+          override: true,
         },
       })
       if (!week)
@@ -30,6 +31,6 @@ export default async function handler(
     default:
       return res
         .status(400)
-        .json({ success: false, error: 'Only GET method allowed' })
+        .json({ success: false, error: 'Only GET and PUT method allowed' })
   }
 }
