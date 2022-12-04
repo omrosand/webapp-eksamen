@@ -2,6 +2,7 @@ import type { NextPage } from 'next'
 import { useEffect, useState } from 'react'
 import { getWeeks } from '../api/weeks'
 import Nav from '../components/Nav'
+import Title from '../components/Title'
 import WeekList from '../components/WeekList'
 import Weeks from '../components/Weeks'
 
@@ -44,7 +45,7 @@ const Home: NextPage = () => {
   return (
     <main>
       <Nav />
-      <h1>Lunsjkalender</h1>
+      <Title title="Lunsjkalender" Tag="h1" />
       <Weeks weeks={weeks} />
       <WeekList weeks={weeks} />
     </main>

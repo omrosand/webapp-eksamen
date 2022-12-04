@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { getEmployee, putEmployee } from '../api/employees'
 import Link from 'next/link'
 import Button from './Button'
+import Title from './Title'
 
 const Employee = () => {
   const [employee, setEmployee] = useState<any>({})
@@ -44,11 +45,10 @@ const Employee = () => {
   }
 
   if (isLoading) {
-    return <h1>Henter ukeoversikt...</h1>
+    return <Title title="Henter ansatt..." Tag="h1" />
   }
   if (isError) {
-    console.log(error)
-    return <h1>Noe gikk galt...</h1>
+    return <Title title="Noe gikk galt..." Tag="h1" />
   }
 
   return (
@@ -78,7 +78,7 @@ const Employee = () => {
         />
         <Button title="Endre" />
       </form>
-      <h2>Jobbdager: </h2>
+      <Title title="Jobbdager:" Tag="h2" />
       <section className="workDays">
         {employee.days?.length > 0 ? (
           employee.days?.map((day: any) => (
@@ -95,7 +95,7 @@ const Employee = () => {
             </div>
           ))
         ) : (
-          <h3>{employee.name} har ingen lunsjvakter.</h3>
+          <Title title={`${employee.name} har ingen lunsjvakter.`} Tag="h3" />
         )}
       </section>
     </>

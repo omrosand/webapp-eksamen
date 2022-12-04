@@ -1,12 +1,13 @@
 import type { NextPage } from 'next'
 import Employee from '../../components/Employee'
 import Nav from '../../components/Nav'
+import Title from '../../components/Title'
 
 const Employees: NextPage = () => {
   return (
     <main>
       <Nav />
-      <h1>Ansatt side</h1>
+      <Title title="Ansatt side" Tag="h1" />
       <Employee />
     </main>
   )
