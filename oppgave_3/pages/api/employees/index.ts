@@ -36,6 +36,6 @@ export default async function handler(
     default:
       return res
         .status(400)
-        .json({ success: false, error: 'Only GET method allowed' })
+        .json({ success: false, error: 'Only GET and POST method allowed' })
   }
 }
