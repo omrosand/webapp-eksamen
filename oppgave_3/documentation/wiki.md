@@ -26,3 +26,8 @@ Oppdaterer navn på ansatt i databasen.
 
 **POST:**
 Sender med søkefrase og henter alle ansatte som inneholder søkefrasen.
+
+# /api/weeks/{id}/overrides
+
+**POST:**
+Lager en ny override for en gitt uke id.
