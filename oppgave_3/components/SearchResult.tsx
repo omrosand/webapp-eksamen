@@ -33,6 +33,7 @@ const SearchResult = () => {
     }
     fetchEmployee()
   }, [query])
+
   return (
     <>
       <form onSubmit={(e) => e.preventDefault()}>

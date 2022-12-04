@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { postOverride } from '../api/overrides'
 import Button from './Button'
 import Title from './Title'
