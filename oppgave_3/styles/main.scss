@@ -193,3 +193,11 @@ tr {
 .appButton:disabled:hover {
   box-shadow: none;
 }
+.overrideList {
+  list-style-type: disc;
+  font-size: 1.2rem;
+  margin-top: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}

@@ -52,7 +52,7 @@ const Override = ({ week }: any) => {
         />
         <Button title="Endre" />
       </form>
-      <ul>
+      <ul className="overrideList">
         {week.override?.length > 0
           ? week.override.map((day: any) => (
               <li key={day.id}>

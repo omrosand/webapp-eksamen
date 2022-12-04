@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 import useWeekSpan from '../hooks/useWeekSpan'
-import Button from './Button'
 import Title from './Title'
 
 // TODO: Erstatt any med typede props (samme på Weeks.tsx)
@@ -47,12 +46,16 @@ export default function Weeks({ weeks }: any) {
           max="52"
           defaultValue={weekSpan.to}
         />
-        <Button title="Vis uker" type="submit" />
-        <Button
-          title="Vis alle uker"
+        <button className="appButton" type="submit">
+          Vis uker
+        </button>
+        <button
+          className="appButton"
           type="button"
           onClick={() => setWeekSpan({ from: 1, to: 52 })}
-        />
+        >
+          Vis alle uker
+        </button>
       </form>
       <Title title={weekSpanMessage} Tag="h2" />
       <ul>
