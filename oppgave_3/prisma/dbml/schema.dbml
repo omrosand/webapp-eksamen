@@ -13,6 +13,15 @@ Table Week {
   yearId String [not null]
   year Year [not null]
   days Day [not null]
+  override Override [not null]
+}
+
+Table Override {
+  id String [pk]
+  employee String [not null]
+  day String [not null]
+  week Week [not null]
+  weekId String [not null]
 }
 
 Table Day {
@@ -32,6 +41,8 @@ Table Employee {
 }
 
 Ref: Week.yearId > Year.id
+
+Ref: Override.weekId > Week.id
 
 Ref: Day.weekId > Week.id
 

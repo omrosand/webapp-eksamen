@@ -1,5 +1,13 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import prisma from '../../../lib/db'
+// import { Employee } from '../../../types'
+
+// const testEmployee: Employee = {
+//   id: 729,
+//   name: 'Herr Testesen',
+//   rules: 'rules are meant to be broken',
+// }
+// const testEmployees: Employee[] = [testEmployee]
 
 export default async function handler(
   req: NextApiRequest,

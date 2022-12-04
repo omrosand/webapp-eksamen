@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { getWeek } from '../api/weeks'
 import Link from 'next/link'
+import Override from './Override'
 
 const Employee = () => {
   const [week, setWeek] = useState<any>({})
@@ -59,6 +60,7 @@ const Employee = () => {
       ) : (
         <p>Uke {week.week} er friuke og ingen lunsj</p>
       )}
+      <Override week={week} />
     </>
   )
 }

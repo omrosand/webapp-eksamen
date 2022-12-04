@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { getEmployee, putEmployee } from '../api/employees'
+import Link from 'next/link'
+import Button from './Button'
 
 const Employee = () => {
   const [employee, setEmployee] = useState<any>({})
@@ -28,7 +30,7 @@ const Employee = () => {
       }
     }
     fetchEmployee()
-  }, [employeeId])
+  }, [employeeId, employee])
 
   const changeName = async (event: any) => {
     event.preventDefault()
@@ -74,14 +76,21 @@ const Employee = () => {
           value={inputName}
           onChange={(e) => setInputName(e.target.value)}
         />
-        <button type="submit">Endre</button>
+        <Button title="Endre" />
       </form>
       <h2>Jobbdager: </h2>
       <section className="workDays">
         {employee.days?.length > 0 ? (
           employee.days?.map((day: any) => (
             <div className="workDayCard" key={day.id}>
-              <h3>Uke {day.week.week}</h3>
+              <Link
+                key={day.week.id}
+                href={{
+                  pathname: `/weeks/${day.week.id}`,
+                }}
+              >
+                <h3>Uke {day.week.week}</h3>
+              </Link>
               <p>{day.name}</p>
             </div>
           ))

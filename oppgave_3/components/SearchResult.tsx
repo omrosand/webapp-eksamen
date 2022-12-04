@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { searchEmployee } from '../api/employees'
+import Button from './Button'
 
 const SearchResult = () => {
   const [employeeList, setEmployeeList] = useState<any>([])
@@ -41,7 +42,7 @@ const SearchResult = () => {
           type="text"
         />
         <Link href={{ pathname: `/employees/search/${inputQuery}` }}>
-          <button onClick={() => setInputQuery('')}>Søk</button>
+          <Button onClick={() => setInputQuery('')} title="Søk" />
         </Link>
       </form>
       <h1>Ansatte som matcher søk:</h1>
@@ -53,7 +54,7 @@ const SearchResult = () => {
           </li>
         ))}
       </ul>
-      <button onClick={() => setEmployeeList([])}>Nullstill søk</button>
+      <Button title="Nullstill søk" onClick={() => setEmployeeList([])} />
     </>
   )
 }
