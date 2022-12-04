@@ -2,6 +2,7 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { postOverride } from '../api/overrides'
 import Button from './Button'
+import Title from './Title'
 
 const Override = ({ week }: any) => {
   const [day, setDay] = useState('Mandag')
@@ -33,7 +34,7 @@ const Override = ({ week }: any) => {
 
   return (
     <>
-      <h2>Overskrivelser:</h2>
+      <Title title="Overskrivelser:" Tag="h2" />
       <form onSubmit={overrideDay}>
         <select onChange={handleSelectChange} defaultValue="Mandag">
           <option value="Mandag">Mandag</option>

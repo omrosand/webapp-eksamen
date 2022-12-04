@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 import useWeekSpan from '../hooks/useWeekSpan'
 import Button from './Button'
+import Title from './Title'
 
 // TODO: Erstatt any med typede props (samme på Weeks.tsx)
 
@@ -53,8 +54,7 @@ export default function Weeks({ weeks }: any) {
           onClick={() => setWeekSpan({ from: 1, to: 52 })}
         />
       </form>
-
-      <h2>{weekSpanMessage}</h2>
+      <Title title={weekSpanMessage} Tag="h2" />
       <ul>
         {weeks.map((week: any) => {
           if (weekArray.includes(week.week)) {
@@ -63,7 +63,7 @@ export default function Weeks({ weeks }: any) {
                 className={week.days.length > 0 ? 'weekListElement' : 'noLunch'}
                 key={week.id}
               >
-                <h2>Uke {week.week}</h2>
+                <Title title={`Uke ${week.week}`} Tag="h2" />
                 {week.days.length > 0 ? (
                   <details onToggle={toggleWeekView} id={week.id}>
                     <summary>Se dager</summary>
@@ -81,7 +81,7 @@ export default function Weeks({ weeks }: any) {
                     </ul>
                   </details>
                 ) : (
-                  <h3>Friuke 🥳</h3>
+                  <Title title="Friuke 🥳" Tag="h3" />
                 )}
               </li>
             )

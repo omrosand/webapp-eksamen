@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { searchEmployee } from '../api/employees'
 import Button from './Button'
+import Title from './Title'
 
 const SearchResult = () => {
   const [employeeList, setEmployeeList] = useState<any>([])
@@ -42,11 +43,11 @@ const SearchResult = () => {
           type="text"
         />
         <Link href={{ pathname: `/employees/search/${inputQuery}` }}>
-          <Button onClick={() => setInputQuery('')} title="Søk" />
+          <button onClick={() => setInputQuery('')}>Søk</button>
         </Link>
       </form>
-      <h1>Ansatte som matcher søk:</h1>
-      <h2>Antall: {employeeList.length}</h2>
+      <Title title="Ansatte som matcher søk:" Tag="h1" />
+      <Title title={`Antall: ${employeeList.length}`} Tag="h2" />
       <ul className="searchedEmployees">
         {employeeList.map((person: any) => (
           <li key={person.id}>

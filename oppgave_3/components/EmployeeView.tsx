@@ -2,6 +2,7 @@ import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import { getEmployees, postEmployee, putEmployee } from '../api/employees'
 import Button from './Button'
+import Title from './Title'
 
 export default function EmployeeView() {
   const [status, setStatus] = useState('')
@@ -40,17 +41,16 @@ export default function EmployeeView() {
   }
 
   if (isLoading) {
-    return <p>Henter data ...</p>
+    return <Title title="Henter ansattoversikt..." Tag="h1" />
   }
-
   if (isError) {
-    return <p>Noe gikk galt ...</p>
+    return <Title title="Noe gikk galt..." Tag="h1" />
   }
 
   return (
     <div className="wrapper">
       <p>Totalt {employeeList.length} ansatte.</p>
-      <h2>Legg til ny ansatt</h2>
+      <Title title="Legg til ny ansatt" Tag="h2" />
       <form onSubmit={handleSubmit}>
         <input
           type="text"

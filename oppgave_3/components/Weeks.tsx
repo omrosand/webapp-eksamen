@@ -1,11 +1,12 @@
 // TODO: Erstatt any med typede props (samme på WeekList.tsx)
 
 import Link from 'next/link'
+import Title from './Title'
 
 export default function Weeks({ weeks }: any) {
   return (
     <>
-      <h2>Uker</h2>
+      <Title title="Uker" Tag="h2" />
       <div className="weekWrapper">
         {weeks.map((week: any) =>
           week.days.length > 0 ? (

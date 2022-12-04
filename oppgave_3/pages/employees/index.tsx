@@ -1,12 +1,13 @@
 import type { NextPage } from 'next'
 import EmployeeView from '../../components/EmployeeView'
 import Nav from '../../components/Nav'
+import Title from '../../components/Title'
 
 const Employees: NextPage = () => {
   return (
     <main>
       <Nav />
-      <h1>Ansatt oversikt</h1>
+      <Title title="Ansatt oversikt" Tag="h1" />
       <EmployeeView />
     </main>
   )
