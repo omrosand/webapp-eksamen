@@ -13,7 +13,6 @@ export default async function handler(
 
       async function main() {
         await prisma.day.deleteMany({})
-        await prisma.override.deleteMany({})
         await prisma.week.deleteMany({})
         await prisma.year.deleteMany({})
         await prisma.employee.deleteMany({})
