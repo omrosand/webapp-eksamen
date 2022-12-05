@@ -12,7 +12,6 @@ export default async function handler(
       const prisma = new PrismaClient()
 
       async function main() {
-        console.log(`Start seeding ...`)
         await prisma.day.deleteMany({})
         await prisma.override.deleteMany({})
         await prisma.week.deleteMany({})
@@ -65,7 +64,6 @@ export default async function handler(
             }
           }
         }
-        console.log(`Seeding finished.`)
       }
 
       main()

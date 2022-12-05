@@ -77,6 +77,6 @@ export default async function handler(
     default:
       return res
         .status(400)
-        .json({ success: false, error: 'Only GET and PUT method allowed' })
+        .json({ success: false, error: 'Only GET, PUT and POST method allowed' })
   }
 }

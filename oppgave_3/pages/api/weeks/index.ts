@@ -7,6 +7,7 @@ export default async function handler(
 ) {
   switch (req.method?.toLowerCase()) {
     case 'get':
+      
       const weeks = await prisma.week.findMany({
         include: {
           days: {
