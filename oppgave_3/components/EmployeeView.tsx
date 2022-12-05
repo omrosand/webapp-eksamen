@@ -11,9 +11,9 @@ export default function EmployeeView() {
   const [employeeList, setEmployeeList] = useState<any[]>([])
   const [error, setError] = useState({})
 
-  const isLoading = status === 'Loading...'
-  const isError = status === 'Error'
-  const isSuccess = status === 'Success'
+  const isLoading = status === 'Fetching data...'
+  const isSuccess = status === 'Fullført'
+  const isError = status === 'Something went wrong'
 
   useEffect(() => {
     const fetchEmployees = async () => {
@@ -25,14 +25,14 @@ export default function EmployeeView() {
 
   const handleSubmit = async (event: any) => {
     event.preventDefault()
-    setStatus('Loading...')
+    setStatus('Fetching data...')
     try {
       const result = await postEmployee({ name, rules: 'default rules' })
-      setStatus('Success')
+      setStatus('Fullført')
       setData(result)
       setName('')
     } catch (error) {
-      setStatus('Error')
+      setStatus('Something went wrong')
       setError(error as any)
       setTimeout(() => {
         setStatus('')

@@ -33,6 +33,7 @@ const SearchResult = () => {
     }
     fetchEmployee()
   }, [query])
+
   return (
     <>
       <form onSubmit={(e) => e.preventDefault()}>
@@ -43,7 +44,9 @@ const SearchResult = () => {
           type="text"
         />
         <Link href={{ pathname: `/employees/search/${inputQuery}` }}>
-          <button onClick={() => setInputQuery('')}>Søk</button>
+          <button className="appButton" onClick={() => setInputQuery('')}>
+            Søk
+          </button>
         </Link>
       </form>
       <Title title="Ansatte som matcher søk:" Tag="h1" />
