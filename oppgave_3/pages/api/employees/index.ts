@@ -1,13 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import prisma from '../../../lib/db'
-// import { Employee } from '../../../types'
-
-// const testEmployee: Employee = {
-//   id: 729,
-//   name: 'Herr Testesen',
-//   rules: 'rules are meant to be broken',
-// }
-// const testEmployees: Employee[] = [testEmployee]
 
 export default async function handler(
   req: NextApiRequest,
@@ -36,6 +28,6 @@ export default async function handler(
     default:
       return res
         .status(400)
-        .json({ success: false, error: 'Only GET method allowed' })
+        .json({ success: false, error: 'Only GET and POST method allowed' })
   }
 }
