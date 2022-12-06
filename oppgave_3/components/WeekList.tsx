@@ -1,11 +1,10 @@
 import Link from 'next/link'
-import { useEffect, useRef, useState } from 'react'
+import { useState } from 'react'
 import useWeekSpan from '../hooks/useWeekSpan'
+import { Year } from '../types'
 import Title from './Title'
 
-// TODO: Erstatt any med typede props (samme på Weeks.tsx)
-
-export default function Weeks({ weeks }: any) {
+export default function Weeks({ weeks }: Year) {
   const [summary, setSummary] = useState(false)
   const {
     createWeekSpanArray,

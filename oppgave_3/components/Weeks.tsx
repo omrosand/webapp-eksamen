@@ -1,9 +1,9 @@
-// TODO: Erstatt any med typede props (samme på WeekList.tsx)
-
+import { Week } from '@prisma/client'
 import Link from 'next/link'
+import { Year } from '../types'
 import Title from './Title'
 
-export default function Weeks({ weeks }: any) {
+export default function Weeks({ weeks }: Year) {
   return (
     <>
       <Title title="Uker" Tag="h2" />

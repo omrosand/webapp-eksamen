@@ -18,5 +18,10 @@ export type Week = {
   id: string
   week: number
   yearId: string
+  year: Year
   days: Day[]
+}
+export type Year = {
+  id: string
+  weeks: Week[]
 }
