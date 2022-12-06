@@ -2,11 +2,49 @@ generator client {
   provider = "prisma-client-js"
 }
 
+generator dbml {
+  provider = "prisma-dbml-generator"
+}
+
 datasource db {
   provider = "sqlite"
   url      = "file:./dev.db"
 }
 
-generator dbml {
-  provider = "prisma-dbml-generator"
+model Year {
+  id    String @id @default(cuid())
+  weeks Week[]
+}
+
+model Week {
+  id       String     @id @default(cuid())
+  week     Int        @unique
+  yearId   String
+  year     Year       @relation(fields: [yearId], references: [id])
+  days     Day[]
+  override Override[]
+}
+
+model Override {
+  id       String @id @default(cuid())
+  employee String
+  day      String
+  week     Week   @relation(fields: [weekId], references: [id])
+  weekId   String
+}
+
+model Day {
+  id         String   @id @default(cuid())
+  name       String
+  weekId     String
+  employeeId String
+  week       Week     @relation(fields: [weekId], references: [id])
+  employee   Employee @relation(fields: [employeeId], references: [id])
+}
+
+model Employee {
+  id    String @id @default(cuid())
+  name  String
+  rules String
+  days  Day[]
 }

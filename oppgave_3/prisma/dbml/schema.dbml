@@ -1,0 +1,49 @@
+//// ------------------------------------------------------
+//// THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+//// ------------------------------------------------------
+
+Table Year {
+  id String [pk]
+  weeks Week [not null]
+}
+
+Table Week {
+  id String [pk]
+  week Int [unique, not null]
+  yearId String [not null]
+  year Year [not null]
+  days Day [not null]
+  override Override [not null]
+}
+
+Table Override {
+  id String [pk]
+  employee String [not null]
+  day String [not null]
+  week Week [not null]
+  weekId String [not null]
+}
+
+Table Day {
+  id String [pk]
+  name String [not null]
+  weekId String [not null]
+  employeeId String [not null]
+  week Week [not null]
+  employee Employee [not null]
+}
+
+Table Employee {
+  id String [pk]
+  name String [not null]
+  rules String [not null]
+  days Day [not null]
+}
+
+Ref: Week.yearId > Year.id
+
+Ref: Override.weekId > Week.id
+
+Ref: Day.weekId > Week.id
+
+Ref: Day.employeeId > Employee.id

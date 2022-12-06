@@ -54,22 +54,19 @@ export default function Students() {
   }
   if (option === 'alder') {
     groupedData = data.reduce(groupByProperty('age'), {})
-    console.log(groupedData)
   }
   if (option === 'kjonn') {
     groupedData = data.reduce(groupByProperty('gender'), {})
-    console.log(groupedData)
   }
   if (option === 'klasse') {
     groupedData = data.reduce(groupByProperty('group'), {})
-    console.log(groupedData)
   }
 
   return (
     <>
       <Filter setOption={setOption} />
       {Object.entries(groupedData).map(([key, value]: [string, Student[]]) => (
-        <>
+        <div key={key}>
           {option !== 'ingen' ? (
             <h2>
               Gruppering etter {option}: {key}
@@ -87,7 +84,7 @@ export default function Students() {
             ))}{' '}
             <p className="count">Antall: {value.length}</p>
           </ul>
-        </>
+        </div>
       ))}
     </>
   )
